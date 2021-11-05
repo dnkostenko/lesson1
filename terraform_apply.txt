@@ -1,0 +1,649 @@
+c:\terraform\less11>terraform.exe apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.l1nginx will be created
+  + resource "aws_instance" "l1nginx" {
+      + ami                                  = "ami-06d79c60d7454e2af"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "myKey"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "name" = "Lesson1nginx"
+        }
+      + tags_all                             = {
+          + "name" = "Lesson1nginx"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_key_pair.kp will be created
+  + resource "aws_key_pair" "kp" {
+      + arn         = (known after apply)
+      + fingerprint = (known after apply)
+      + id          = (known after apply)
+      + key_name    = "myKey"
+      + key_pair_id = (known after apply)
+      + public_key  = (known after apply)
+      + tags_all    = (known after apply)
+    }
+
+  # aws_security_group.allow_inbond_ssh will be created
+  + resource "aws_security_group" "allow_inbond_ssh" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "allow-inbond-ssh"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags_all               = (known after apply)
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_security_group.allow_inbound_http will be created
+  + resource "aws_security_group" "allow_inbound_http" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "allow-inbound-http"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags_all               = (known after apply)
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_security_group.allow_outbound_traffic will be created
+  + resource "aws_security_group" "allow_outbound_traffic" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = "allow-outbound-traffic"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags_all               = (known after apply)
+      + vpc_id                 = (known after apply)
+    }
+
+  # tls_private_key.pk will be created
+  + resource "tls_private_key" "pk" {
+      + algorithm                  = "RSA"
+      + ecdsa_curve                = "P224"
+      + id                         = (known after apply)
+      + private_key_pem            = (sensitive value)
+      + public_key_fingerprint_md5 = (known after apply)
+      + public_key_openssh         = (known after apply)
+      + public_key_pem             = (known after apply)
+      + rsa_bits                   = 4096
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+tls_private_key.pk: Creating...
+aws_security_group.allow_inbound_http: Creating...
+aws_security_group.allow_outbound_traffic: Creating...
+aws_security_group.allow_inbond_ssh: Creating...
+tls_private_key.pk: Creation complete after 2s [id=671eb5d3a1b25dc41c1db1e62393a07ef8e9c663]
+aws_key_pair.kp: Creating...
+aws_key_pair.kp: Provisioning with 'local-exec'...
+aws_key_pair.kp (local-exec): (output suppressed due to sensitive value in config)
+aws_key_pair.kp (local-exec): (output suppressed due to sensitive value in config)
+aws_key_pair.kp: Creation complete after 1s [id=myKey]
+aws_security_group.allow_inbond_ssh: Creation complete after 2s [id=sg-093b0f481cfa894bc]
+aws_security_group.allow_outbound_traffic: Creation complete after 2s [id=sg-0d9a0afa29a7d6d99]
+aws_security_group.allow_inbound_http: Creation complete after 2s [id=sg-0b82aa6fc034b2bf7]
+aws_instance.l1nginx: Creating...
+aws_instance.l1nginx: Still creating... [10s elapsed]
+aws_instance.l1nginx: Still creating... [20s elapsed]
+aws_instance.l1nginx: Still creating... [30s elapsed]
+aws_instance.l1nginx: Provisioning with 'remote-exec'...
+aws_instance.l1nginx (remote-exec): Connecting to remote host via SSH...
+aws_instance.l1nginx (remote-exec):   Host: 35.181.1.124
+aws_instance.l1nginx (remote-exec):   User: ubuntu
+aws_instance.l1nginx (remote-exec):   Password: false
+aws_instance.l1nginx (remote-exec):   Private key: true
+aws_instance.l1nginx (remote-exec):   Certificate: false
+aws_instance.l1nginx (remote-exec):   SSH Agent: false
+aws_instance.l1nginx (remote-exec):   Checking Host Key: false
+aws_instance.l1nginx (remote-exec):   Target Platform: unix
+aws_instance.l1nginx (remote-exec): Connecting to remote host via SSH...
+aws_instance.l1nginx (remote-exec):   Host: 35.181.1.124
+aws_instance.l1nginx (remote-exec):   User: ubuntu
+aws_instance.l1nginx (remote-exec):   Password: false
+aws_instance.l1nginx (remote-exec):   Private key: true
+aws_instance.l1nginx (remote-exec):   Certificate: false
+aws_instance.l1nginx (remote-exec):   SSH Agent: false
+aws_instance.l1nginx (remote-exec):   Checking Host Key: false
+aws_instance.l1nginx (remote-exec):   Target Platform: unix
+aws_instance.l1nginx (remote-exec): Connected!
+aws_instance.l1nginx: Still creating... [40s elapsed]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [Connecting to archive.ubuntu.com] [
+aws_instance.l1nginx (remote-exec): 0% [Connecting to archive.ubuntu.com]
+aws_instance.l1nginx (remote-exec): Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [Waiting for headers]
+aws_instance.l1nginx (remote-exec): Get:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [3 InRelease 44.6 kB/114 kB 39%]
+aws_instance.l1nginx (remote-exec): 0% [Waiting for headers]
+aws_instance.l1nginx (remote-exec): Get:4 http://archive.ubuntu.com/ubuntu focal-backports InRelease [101 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [4 InRelease 56.4 kB/101 kB 56%]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): Get:5 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [949 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages 58.0 kB/949 kB 6%]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): Get:6 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [178 kB]
+aws_instance.l1nginx (remote-exec): Get:7 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [8844 B]
+aws_instance.l1nginx (remote-exec): Get:8 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [483 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [8 Packages 126 kB/483 kB 26%]
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [8 Packages 1
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:9 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [69.2 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [9 Translatio
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:10 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [648 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [10 Packages
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:11 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [106 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [11 Translati
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:12 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [12.8 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [12 Commands-
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:13 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [21.9 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [13 Packages
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:14 http://security.ubuntu.com/ubuntu focal-security/multiverse Translation-en [4948 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [14 Translati
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:15 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 c-n-f Metadata [540 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B] [15 Commands-
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [5 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [6 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [6 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): Get:16 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [8628 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [6 Translation-en store 0 B] [16 Pac
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [16 Packages 4634 kB/8628 kB 54%]
+aws_instance.l1nginx (remote-exec): 0% [7 Commands-amd64 store 0 B] [16 Pac
+aws_instance.l1nginx (remote-exec): 0% [16 Packages 5028 kB/8628 kB 58%]
+aws_instance.l1nginx (remote-exec): 0% [8 Packages store 0 B] [16 Packages
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [8 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:17 http://archive.ubuntu.com/ubuntu focal/universe Translation-en [5124 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [8 Packages store 0 B] [17 Translati
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [17 Translation-en 3216 kB/5124 kB 6
+aws_instance.l1nginx (remote-exec): 0% [9 Translation-en store 0 B] [17 Tra
+aws_instance.l1nginx (remote-exec): 0% [17 Translation-en 5124 kB/5124 kB 1
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [17 Translat
+aws_instance.l1nginx (remote-exec): Get:18 http://archive.ubuntu.com/ubuntu focal/universe amd64 c-n-f Metadata [265 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [18 Commands
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:19 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [144 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [19 Packages
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:20 http://archive.ubuntu.com/ubuntu focal/multiverse Translation-en [104 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [20 Translat
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:21 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 c-n-f Metadata [9136 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [21 Commands
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:22 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [1303 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [22 Packages
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:23 http://archive.ubuntu.com/ubuntu focal-updates/main Translation-en [270 kB]
+aws_instance.l1nginx (remote-exec): Get:24 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [14.4 kB]
+aws_instance.l1nginx (remote-exec): Get:25 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [524 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [25 Packages
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:26 http://archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [75.0 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [26 Translat
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:27 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [870 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [27 Packages
+aws_instance.l1nginx (remote-exec): Get:28 http://archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [188 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B] [28 Translat
+aws_instance.l1nginx (remote-exec): Get:29 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [19.4 kB]
+aws_instance.l1nginx (remote-exec): Get:30 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [24.6 kB]
+aws_instance.l1nginx (remote-exec): Get:31 http://archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [6856 B]
+aws_instance.l1nginx (remote-exec): Get:32 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [620 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [10 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [11 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [12 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [13 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [14 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [15 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): 0% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:33 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [2568 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): Get:34 http://archive.ubuntu.com/ubuntu focal-backports/main Translation-en [1120 B]
+aws_instance.l1nginx (remote-exec): Get:35 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [400 B]
+aws_instance.l1nginx (remote-exec): Get:36 http://archive.ubuntu.com/ubuntu focal-backports/restricted amd64 c-n-f Metadata [116 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B] [Waiting fo
+aws_instance.l1nginx (remote-exec): Get:37 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [6592 B]
+aws_instance.l1nginx (remote-exec): Get:38 http://archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [3292 B]
+aws_instance.l1nginx (remote-exec): Get:39 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [580 B]
+aws_instance.l1nginx (remote-exec): Get:40 http://archive.ubuntu.com/ubuntu focal-backports/multiverse amd64 c-n-f Metadata [116 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B] [40 Command
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [16 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [Working]
+aws_instance.l1nginx (remote-exec): 94% [17 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [17 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [17 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 95% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 95% [18 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 95% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 95% [19 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 95% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 95% [20 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 95% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 95% [21 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 95% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 95% [22 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 96% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 96% [23 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 96% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 96% [24 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 96% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 96% [25 Packages store 0 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 96% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 96% [26 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 97% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 97% [27 Packages store 0 B]
+aws_instance.l1nginx: Still creating... [50s elapsed]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 97% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 97% [28 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 97% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 97% [29 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 97% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 97% [30 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 98% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 98% [31 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 98% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 98% [32 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 98% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 98% [33 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 98% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 98% [34 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 99% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 99% [35 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 99% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 99% [36 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 99% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 99% [37 Packages store 0 B]
+aws_instance.l1nginx (remote-exec): 99% [Working]              3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 99% [38 Translation-en store 0 B]
+aws_instance.l1nginx (remote-exec): 100% [Working]             3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 100% [39 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 100% [Working]             3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): 100% [40 Commands-amd64 store 0 B]
+aws_instance.l1nginx (remote-exec): 100% [Working]             3247 kB/s 0s
+aws_instance.l1nginx (remote-exec): Fetched 20.4 MB in 8s (2416 kB/s)
+aws_instance.l1nginx (remote-exec): Reading package lists... 0%
+aws_instance.l1nginx (remote-exec): Reading package lists... 0%
+aws_instance.l1nginx (remote-exec): Reading package lists... 0%
+aws_instance.l1nginx (remote-exec): Reading package lists... 42%
+aws_instance.l1nginx (remote-exec): Reading package lists... 42%
+aws_instance.l1nginx (remote-exec): Reading package lists... 64%
+aws_instance.l1nginx (remote-exec): Reading package lists... 64%
+aws_instance.l1nginx (remote-exec): Reading package lists... 65%
+aws_instance.l1nginx (remote-exec): Reading package lists... 65%
+aws_instance.l1nginx (remote-exec): Reading package lists... 65%
+aws_instance.l1nginx (remote-exec): Reading package lists... 65%
+aws_instance.l1nginx (remote-exec): Reading package lists... 71%
+aws_instance.l1nginx (remote-exec): Reading package lists... 71%
+aws_instance.l1nginx (remote-exec): Reading package lists... 74%
+aws_instance.l1nginx (remote-exec): Reading package lists... 74%
+aws_instance.l1nginx (remote-exec): Reading package lists... 77%
+aws_instance.l1nginx (remote-exec): Reading package lists... 77%
+aws_instance.l1nginx (remote-exec): Reading package lists... 78%
+aws_instance.l1nginx (remote-exec): Reading package lists... 78%
+aws_instance.l1nginx (remote-exec): Reading package lists... 82%
+aws_instance.l1nginx (remote-exec): Reading package lists... 82%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 84%
+aws_instance.l1nginx (remote-exec): Reading package lists... 87%
+aws_instance.l1nginx (remote-exec): Reading package lists... 88%
+aws_instance.l1nginx (remote-exec): Reading package lists... 88%
+aws_instance.l1nginx (remote-exec): Reading package lists... 91%
+aws_instance.l1nginx (remote-exec): Reading package lists... 91%
+aws_instance.l1nginx (remote-exec): Reading package lists... 93%
+aws_instance.l1nginx (remote-exec): Reading package lists... 93%
+aws_instance.l1nginx (remote-exec): Reading package lists... 94%
+aws_instance.l1nginx (remote-exec): Reading package lists... 94%
+aws_instance.l1nginx (remote-exec): Reading package lists... 98%
+aws_instance.l1nginx (remote-exec): Reading package lists... 98%
+aws_instance.l1nginx (remote-exec): Reading package lists... 99%
+aws_instance.l1nginx (remote-exec): Reading package lists... 99%
+aws_instance.l1nginx (remote-exec): Reading package lists... 99%
+aws_instance.l1nginx (remote-exec): Reading package lists... 99%
+aws_instance.l1nginx (remote-exec): Reading package lists... 99%
+aws_instance.l1nginx (remote-exec): Reading package lists... 99%
+aws_instance.l1nginx (remote-exec): Reading package lists... Done
+aws_instance.l1nginx (remote-exec): Building dependency tree... 0%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 0%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 0%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 50%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 50%
+aws_instance.l1nginx (remote-exec): Building dependency tree
+aws_instance.l1nginx (remote-exec): Reading state information... 0%
+aws_instance.l1nginx (remote-exec): Reading state information... 0%
+aws_instance.l1nginx (remote-exec): Reading state information... Done
+aws_instance.l1nginx (remote-exec): 21 packages can be upgraded. Run 'apt list --upgradable' to see them.
+aws_instance.l1nginx (remote-exec): Reading package lists... 0%
+aws_instance.l1nginx (remote-exec): Reading package lists... 100%
+aws_instance.l1nginx (remote-exec): Reading package lists... Done
+aws_instance.l1nginx (remote-exec): Building dependency tree... 0%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 0%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 50%
+aws_instance.l1nginx (remote-exec): Building dependency tree... 50%
+aws_instance.l1nginx (remote-exec): Building dependency tree
+aws_instance.l1nginx (remote-exec): Reading state information... 0%
+aws_instance.l1nginx (remote-exec): Reading state information... 0%
+aws_instance.l1nginx (remote-exec): Reading state information... Done
+aws_instance.l1nginx (remote-exec): The following additional packages will be installed:
+aws_instance.l1nginx (remote-exec):   libnginx-mod-http-echo nginx-common
+aws_instance.l1nginx (remote-exec):   nginx-light
+aws_instance.l1nginx (remote-exec): Suggested packages:
+aws_instance.l1nginx (remote-exec):   fcgiwrap nginx-doc ssl-cert
+aws_instance.l1nginx (remote-exec): The following NEW packages will be installed:
+aws_instance.l1nginx (remote-exec):   libnginx-mod-http-echo nginx
+aws_instance.l1nginx (remote-exec):   nginx-common nginx-light
+aws_instance.l1nginx (remote-exec): 0 upgraded, 4 newly installed, 0 to remove and 7 not upgraded.
+aws_instance.l1nginx (remote-exec): Need to get 464 kB of archives.
+aws_instance.l1nginx (remote-exec): After this operation, 1610 kB of additional disk space will be used.
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [Working]
+aws_instance.l1nginx (remote-exec): Get:1 http://security.ubuntu.com/ubuntu focal-security/main amd64 nginx-common all 1.18.0-0ubuntu1.2 [37.5 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 0% [1 nginx-common 0 B/37.5 kB 0%]
+aws_instance.l1nginx (remote-exec): 11% [Working]
+aws_instance.l1nginx (remote-exec): Get:2 http://security.ubuntu.com/ubuntu focal-security/universe amd64 libnginx-mod-http-echo amd64 1.18.0-0ubuntu1.2 [21.1 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 11% [2 libnginx-mod-http-echo 0 B/21.1
+aws_instance.l1nginx (remote-exec): 20% [Working]
+aws_instance.l1nginx (remote-exec): Get:3 http://security.ubuntu.com/ubuntu focal-security/universe amd64 nginx-light amd64 1.18.0-0ubuntu1.2 [401 kB]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 20% [3 nginx-light 0 B/401 kB 0%]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [Working]
+aws_instance.l1nginx (remote-exec): Get:4 http://security.ubuntu.com/ubuntu focal-security/main amd64 nginx all 1.18.0-0ubuntu1.2 [3620 B]
+aws_instance.l1nginx (remote-exec):
+aws_instance.l1nginx (remote-exec): 94% [4 nginx 0 B/3620 B 0%]
+aws_instance.l1nginx (remote-exec): 100% [Working]
+aws_instance.l1nginx (remote-exec): Fetched 464 kB in 1s (671 kB/s)
+aws_instance.l1nginx (remote-exec): Preconfiguring packages ...
+                                    Selecting previously unselected package nginx-common.
+aws_instance.l1nginx (remote-exec): (Reading database ...
+aws_instance.l1nginx (remote-exec): (Reading database ... 5%
+aws_instance.l1nginx (remote-exec): (Reading database ... 10%
+aws_instance.l1nginx (remote-exec): (Reading database ... 15%
+aws_instance.l1nginx (remote-exec): (Reading database ... 20%
+aws_instance.l1nginx (remote-exec): (Reading database ... 25%
+aws_instance.l1nginx (remote-exec): (Reading database ... 30%
+aws_instance.l1nginx (remote-exec): (Reading database ... 35%
+aws_instance.l1nginx (remote-exec): (Reading database ... 40%
+aws_instance.l1nginx (remote-exec): (Reading database ... 45%
+aws_instance.l1nginx (remote-exec): (Reading database ... 50%
+aws_instance.l1nginx (remote-exec): (Reading database ... 55%
+aws_instance.l1nginx (remote-exec): (Reading database ... 60%
+aws_instance.l1nginx (remote-exec): (Reading database ... 65%
+aws_instance.l1nginx (remote-exec): (Reading database ... 70%
+aws_instance.l1nginx (remote-exec): (Reading database ... 75%
+aws_instance.l1nginx (remote-exec): (Reading database ... 80%
+aws_instance.l1nginx (remote-exec): (Reading database ... 85%
+aws_instance.l1nginx (remote-exec): (Reading database ... 90%
+aws_instance.l1nginx (remote-exec): (Reading database ... 95%
+aws_instance.l1nginx (remote-exec): (Reading database ... 100%
+aws_instance.l1nginx (remote-exec): (Reading database ... 63754 files and directories currently installed.)
+aws_instance.l1nginx (remote-exec): Preparing to unpack .../nginx-common_1.18.0-0ubuntu1.2_all.deb ...
+Progress: [  6%] [#.................Unpacking nginx-common (1.18.0-0ubuntu1.2) ...
+Progress: [ 12%] [##................Selecting previously unselected package libnginx-mod-http-echo.
+aws_instance.l1nginx (remote-exec): Preparing to unpack .../libnginx-mod-http-echo_1.18.0-0ubuntu1.2_amd64.deb ...
+Progress: [ 18%] [###...............Unpacking libnginx-mod-http-echo (1.18.0-0ubuntu1.2) ...
+Progress: [ 24%] [####..............Selecting previously unselected package nginx-light.
+aws_instance.l1nginx (remote-exec): Preparing to unpack .../nginx-light_1.18.0-0ubuntu1.2_amd64.deb ...
+Progress: [ 29%] [#####.............Unpacking nginx-light (1.18.0-0ubuntu1.2) ...
+Progress: [ 35%] [######............Selecting previously unselected package nginx.
+aws_instance.l1nginx (remote-exec): Preparing to unpack .../nginx_1.18.0-0ubuntu1.2_all.deb ...
+Progress: [ 41%] [#######...........Unpacking nginx (1.18.0-0ubuntu1.2) ...
+Progress: [ 47%] [########..........Setting up nginx-common (1.18.0-0ubuntu1.2) ...
+Progress: [ 53%] [#########.........]
+aws_instance.l1nginx (remote-exec): Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+Progress: [ 59%] [##########........Setting up libnginx-mod-http-echo (1.18.0-0ubuntu1.2) ...
+Progress: [ 71%] [############......Setting up nginx-light (1.18.0-0ubuntu1.2) ...
+Progress: [ 76%] [#############.....]
+Progress: [ 82%] [##############....Setting up nginx (1.18.0-0ubuntu1.2) ...
+Progress: [ 94%] [################..Processing triggers for systemd (245.4-4ubuntu3.13) ...
+aws_instance.l1nginx (remote-exec): Processing triggers for man-db (2.9.1-1) ...
+aws_instance.l1nginx (remote-exec): Processing triggers for ufw (0.36-6) ...
+
+aws_instance.l1nginx: Still creating... [1m0s elapsed]
+aws_instance.l1nginx: Creation complete after 1m1s [id=i-0383a0f089d096ac8]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+c:\terraform\less11>
